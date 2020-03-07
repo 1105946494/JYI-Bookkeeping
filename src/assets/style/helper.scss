@@ -11,4 +11,21 @@ $font-song: Georgia, "Nimbus Roman No9 L", "Songti SC", "Noto Serif CJK SC",
   "AR PL SungtiL GB", NSimSun, SimSun, "TW\-Sung", "WenQuanYi Bitmap Song",
   "AR PL UMing CN", "AR PL UMing HK", "AR PL UMing TW", "AR PL UMing TW MBE",
   PMingLiU, MingLiU, serif;
+
 $color-highlight: #f00;
+
+%clearfix {
+  &::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+$color-shadow: rgba(0, 0, 0, 0.25);
+%outershadow {
+  box-shadow: 0 0 3px $color-shadow;
+}
+%innershadow {
+  box-shadow: inset 0 -3px 3px -3px $color-shadow,
+    inset 0 3px 3px -3px $color-shadow;
+}
