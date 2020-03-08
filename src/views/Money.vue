@@ -1,7 +1,7 @@
 <template>
   <Layout contentclass="layout">
     <Numberpad />
-    <Types :xxx="333" />
+    <Types />
     <Notes />
     <Tags />
   </Layout>
