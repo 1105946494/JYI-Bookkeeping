@@ -15,7 +15,7 @@ export default class Notes extends Vue {
   value = "";
   @Watch("value")
   onCaluechanged(value: string) {
-    this.$emit("updata:value", value);
+    this.$emit("update:value", value);
   }
 }
 </script>
