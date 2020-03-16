@@ -6,7 +6,7 @@ type Tag = {
 type TagListModel = {
   data: Tag[];
   fetch: () => Tag[];
-  create: (name: string) => "success" | "duplicared";
+  create: (name: string) => "success" | "duplicated";
   save: () => void;
 };
 const tagLIstModel: TagListModel = {
@@ -17,7 +17,7 @@ const tagLIstModel: TagListModel = {
   create(name: string) {
     const names = this.data.map(item => item.name);
     if (names.indexOf(name) >= 0) {
-      return "duplicared";
+      return "duplicated";
     }
     this.data.push({ id: name, name: name });
     this.save();

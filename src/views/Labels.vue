@@ -6,7 +6,7 @@
       </router-link>
     </div>
     <div class="createTag-wrapper">
-      <button class="createTag" @click="createTag">新建标签</button>
+      <Buttons class="createTag" @click="createTag">新建标签</Buttons>
     </div>
   </Layout>
 </template>
@@ -15,19 +15,22 @@
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import tagLIstModel from "@/models/tagLIstModel";
+import Buttons from "@/components/Buttons.vue";
 
 tagLIstModel.fetch();
-@Component
+@Component({
+  components: { Buttons }
+})
 export default class Lavels extends Vue {
   tags = tagLIstModel.data;
   createTag() {
     const name = window.prompt("请输入标签名");
     if (name) {
       const message = tagLIstModel.create(name);
-      if (message === "duplicared") {
+      if (message === "duplicated") {
         window.alert("标签名重复");
       } else if (message === "success") {
-        window.alert("添加成功");
+        return;
       }
     }
   }

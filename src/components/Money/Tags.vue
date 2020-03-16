@@ -21,6 +21,7 @@ import { Component, Prop } from "vue-property-decorator";
 export default class Tags extends Vue {
   @Prop() readonly dataSource: string[] | undefined;
   selectedTags: string[] = [];
+
   toggle(tag: string) {
     const index = this.selectedTags.indexOf(tag);
     if (index >= 0) {
