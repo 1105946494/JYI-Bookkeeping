@@ -1,6 +1,6 @@
 <template>
   <div class="numberpad">
-    <div class="output">{{output}}</div>
+    <div class="output">{{"￥"+output}}</div>
     <div class="buttons clearfix">
       <button @click="inputContent">1</button>
       <button @click="inputContent">2</button>
@@ -68,10 +68,10 @@ export default class Numberpad extends Vue {
 @import "~@/assets/style/helper.scss";
 .numberpad {
   > .output {
-    font-size: 36px;
-    font-family: Consolas, monospace;
-    padding: 9px 16px;
+    font-size: 24px;
+    padding: 6px 16px;
     text-align: right;
+    background: white;
     @extend %innershadow;
   }
   > .buttons {
@@ -81,10 +81,10 @@ export default class Numberpad extends Vue {
       border: none;
       float: left;
       width: 25%;
-      height: 64px;
+      height: 56px;
       &.ok {
         float: right;
-        height: 64 * 3px;
+        height: 56 * 3px;
       }
       $bg: #f2f2f2;
       &:nth-child(1) {

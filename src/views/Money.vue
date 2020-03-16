@@ -1,9 +1,9 @@
 <template>
   <Layout contentclass="layout">
     <Numberpad :value.sync="record.amount" @submit="saveRecord" />
-    <Types :value.sync="record.type" />
     <Notes @update:value="onUpdataNotes" />
     <Tags :dataSource.sync="tags" />
+    <Types :value.sync="record.type" />
   </Layout>
 </template> 
 
@@ -14,9 +14,11 @@ import Types from "@/components/Money/Types.vue";
 import Notes from "@/components/Money/Notes.vue";
 import Tags from "@/components/Money/Tags.vue";
 import { Component, Watch } from "vue-property-decorator";
-import model from "@/model";
+import model from "@/models/recordlist";
+import tagLIstModel from "@/models/tagLIstModel";
 
 const recordlist = model.fetch();
+const tagList = tagLIstModel.fetch();
 
 type Recorditem = {
   tags: string[];
