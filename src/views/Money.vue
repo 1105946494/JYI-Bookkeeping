@@ -2,7 +2,7 @@
   <Layout contentclass="layout">
     <Numberpad :value.sync="record.amount" @submit="saveRecord" />
     <Notes fieldName="备注" placeholder="在这里写备注吧~" @update:value="onUpdataNotes" />
-    <Tags :dataSource.sync="tags" />
+    <Tags :dataSource.sync="tags" @update:value="onUpdataTags" />
     <Types :value.sync="record.type" />
   </Layout>
 </template> 
@@ -20,18 +20,11 @@ import tagLIstModel from "@/models/tagLIstModel";
 const recordlist = model.fetch();
 const tagList = tagLIstModel.fetch();
 
-type Recorditem = {
-  tags: string[];
-  notes: string;
-  type: string;
-  amount: number;
-  createdAt?: Date;
-};
 @Component({ components: { Numberpad, Types, Notes, Tags } })
 export default class Money extends Vue {
-  tags = ["衣", "食", "住", "行"];
-  recordlist: Recorditem[] = recordlist;
-  record: Recorditem = { tags: [], notes: "", type: "-", amount: 0 };
+  tags = tagList;
+  recordlist: RecordItem[] = recordlist;
+  record: RecordItem = { tags: [], notes: "", type: "-", amount: 0 };
   onUpdataTags(value: string[]) {
     this.record.tags = value;
   }
@@ -39,7 +32,7 @@ export default class Money extends Vue {
     this.record.notes = value;
   }
   saveRecord() {
-    const record2: Recorditem = model.clone(this.record);
+    const record2: RecordItem = model.clone(this.record);
     record2.createdAt = new Date();
     this.recordlist.push(record2);
   }
