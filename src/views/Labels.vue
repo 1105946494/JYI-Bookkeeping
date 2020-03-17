@@ -14,24 +14,18 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
-import tagLIstModel from "@/models/tagLIstModel";
 import Buttons from "@/components/Buttons.vue";
 
-tagLIstModel.fetch();
 @Component({
   components: { Buttons }
 })
 export default class Lavels extends Vue {
-  tags = tagLIstModel.data;
+  tags = window.tagList;
+
   createTag() {
     const name = window.prompt("请输入标签名");
     if (name) {
-      const message = tagLIstModel.create(name);
-      if (message === "duplicated") {
-        window.alert("标签名重复");
-      } else if (message === "success") {
-        return;
-      }
+      window.createTag(name);
     }
   }
 }
