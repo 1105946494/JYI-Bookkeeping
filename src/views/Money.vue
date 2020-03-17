@@ -1,6 +1,5 @@
 <template>
   <Layout contentclass="layout">
-    {{record}}
     <Numberpad :value.sync="record.amount" @submit="saveRecord" />
     <Notes fieldName="备注" placeholder="在这里写备注吧~" @update:value="onUpdataNotes" />
     <Tags :dataSource.sync="tags" @update:value="onUpdataTags" />
@@ -14,15 +13,12 @@ import Numberpad from "@/components/Money/Numberpad.vue";
 import Types from "@/components/Money/Types.vue";
 import Notes from "@/components/Money/Notes.vue";
 import Tags from "@/components/Money/Tags.vue";
-import { Component, Watch } from "vue-property-decorator";
-import model from "@/models/recordlist";
-
-const recordlist = model.fetch();
+import { Component } from "vue-property-decorator";
 
 @Component({ components: { Numberpad, Types, Notes, Tags } })
 export default class Money extends Vue {
   tags = window.tagList;
-  recordlist: RecordItem[] = recordlist;
+  recordlist = window.recordList;
   record: RecordItem = { tags: [], notes: "", type: "-", amount: 0 };
   onUpdataTags(value: string[]) {
     this.record.tags = value;
@@ -31,11 +27,7 @@ export default class Money extends Vue {
     this.record.notes = value;
   }
   saveRecord() {
-    model.create(this.record);
-  }
-  @Watch("recordlist")
-  onRecordlistChange() {
-    model.save();
+    window.createRecord(this.record);
   }
 }
 </script>
