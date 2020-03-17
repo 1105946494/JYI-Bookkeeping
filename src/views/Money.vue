@@ -1,5 +1,6 @@
 <template>
   <Layout contentclass="layout">
+    {{record}}
     <Numberpad :value.sync="record.amount" @submit="saveRecord" />
     <Notes fieldName="备注" placeholder="在这里写备注吧~" @update:value="onUpdataNotes" />
     <Tags :dataSource.sync="tags" @update:value="onUpdataTags" />
@@ -32,13 +33,11 @@ export default class Money extends Vue {
     this.record.notes = value;
   }
   saveRecord() {
-    const record2: RecordItem = model.clone(this.record);
-    record2.createdAt = new Date();
-    this.recordlist.push(record2);
+    model.create(this.record);
   }
   @Watch("recordlist")
   onRecordlistChange() {
-    model.save(this.recordlist);
+    model.save();
   }
 }
 </script>
