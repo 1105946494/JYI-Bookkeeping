@@ -6,42 +6,12 @@ import store from "./store";
 import Nav from "@/components/Nav.vue";
 import Layout from "@/components/Layout.vue";
 import Icon from "@/components/Icon.vue";
-import tagLIstModel from "@/models/tagLIstModel";
-import recordlist from "@/models/recordlist";
 
 Vue.config.productionTip = false;
 
 Vue.component("Nav", Nav);
 Vue.component("Layout", Layout);
 Vue.component("Icon", Icon);
-
-//record store
-window.recordList = recordlist.fetch();
-window.createRecord = (record: RecordItem) => recordlist.create(record);
-
-//tag store
-window.tagList = tagLIstModel.fetch();
-window.findTag = (id: string) => {
-  return window.tagList.filter(t => t.id === id)[0];
-};
-window.createTag = (name: string) => {
-  const message = tagLIstModel.create(name);
-  if (message === "duplicated") {
-    window.alert("标签名重复");
-  } else if (message === "success") {
-    return;
-  }
-};
-window.removeTag = (id: string) => {
-  if (tagLIstModel.remove(id)) {
-    return true;
-  } else {
-    return false;
-  }
-};
-window.updateTag = (id: string, name: string) => {
-  return tagLIstModel.update(id, name);
-};
 
 new Vue({
   router,
