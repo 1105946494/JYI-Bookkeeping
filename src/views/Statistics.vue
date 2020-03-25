@@ -8,14 +8,13 @@
 </template>
 
 <script lang="ts">
-import Types from "@/components/Money/Types.vue";
 import Vue from "vue";
 import { Component, Watch } from "vue-property-decorator";
 import Tabs from "@/components/Tabs.vue";
 import intervalList from "@/constants/intervalList";
 import typeList from "@/constants/typeList";
 
-@Component({ components: { Types, Tabs } })
+@Component({ components: { Tabs } })
 export default class Statistics extends Vue {
   type = "-";
   interval = "day";
