@@ -1,10 +1,10 @@
 <template>
-  <Layout contentclass="layout">
-    <Numberpad :value.sync="record.amount" @submit="saveRecord" />
-    <Notes fieldName="备注" placeholder="在这里写备注吧~" @update:value="onUpdataNotes" />
-    <Tags />
-    <Types :value.sync="record.type" />
-  </Layout>
+    <Layout contentclass="layout">
+      <Numberpad :value.sync="record.amount" @submit="saveRecord" />
+      <Notes fieldName="备注" placeholder="在这里写备注吧~" @update:value="onUpdataNotes" />
+      <Tags />
+      <Tabs  :data-source="typeList" :value.sync="record.type" />
+    </Layout>
 </template> 
 
 <script lang="ts">
@@ -14,15 +14,20 @@ import Types from "@/components/Money/Types.vue";
 import Notes from "@/components/Money/Notes.vue";
 import Tags from "@/components/Money/Tags.vue";
 import { Component } from "vue-property-decorator";
+import typeList from "@/constants/typeList";
+import Tabs from "@/components/Tabs.vue";
 
 @Component({
-  components: { Numberpad, Types, Notes, Tags }
+  components: { Numberpad, Types, Notes, Tags, Tabs }
 })
 export default class Money extends Vue {
   record: RecordItem = { tags: [], notes: "", type: "-", amount: 0 };
   get recordList() {
     return this.$store.state.recordList;
   }
+
+  typeList = typeList;
+
   created() {
     this.$store.commit("fetchRecords");
   }
@@ -36,7 +41,7 @@ export default class Money extends Vue {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" >
 .layout {
   display: flex;
   flex-direction: column-reverse;

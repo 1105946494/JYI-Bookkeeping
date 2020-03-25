@@ -44,7 +44,14 @@ export default class Tabs extends Vue {
   justify-content: center;
   align-items: center;
   > li {
-    width: 33.333%;
+    // width: 33.333%;
+    // height: 48px;
+    // display: flex;
+    // margin: 0 6px;
+    // justify-content: center;
+    // align-items: center;
+    // position: relative;
+    width: 15%;
     height: 48px;
     display: flex;
     margin: 0 6px;
