@@ -1,6 +1,6 @@
 <template>
   <div class="numberpad">
-    <div class="output">{{"￥"+output}}</div>
+    <div class="output">{{ "￥" + output }}</div>
     <div class="buttons clearfix">
       <button @click="inputContent">1</button>
       <button @click="inputContent">2</button>
@@ -57,8 +57,9 @@ export default class Numberpad extends Vue {
     this.output = "0";
   }
   ok() {
-    this.$emit("update:value", this.output);
-    this.$emit("submit", this.output);
+    const number = parseFloat(this.output);
+    this.$emit("update:value", number);
+    this.$emit("submit", number);
     this.output = "0";
   }
 }
