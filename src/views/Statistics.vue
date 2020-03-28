@@ -6,11 +6,12 @@
         classPrefix="interval"
         :data-source="intervalList"
         :value.sync="interval"
-      /> -->
+      />-->
       <ol>
         <li v-for="(group, index) in groupedList" :key="index">
           <h3 class="title">
-            {{ beautify(group.title) }} <span>￥{{ group.total }}</span>
+            {{ beautify(group.title) }}
+            <span>￥{{ group.total }}</span>
           </h3>
           <ol>
             <li class="record" v-for="item in group.items" :key="item.id">
@@ -68,10 +69,13 @@ export default class Statistics extends Vue {
       .sort(
         (a, b) => dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf()
       );
-    type Result = { title: string; total?: number; items: RecordItem[] }[];
+    type Result = { title?: string; total?: number; items: RecordItem[] }[];
+    if (newList.length === 0) {
+      return [] as Result;
+    }
     const result: Result = [
       {
-        title: dayjs(newList[0].createdAt).format("YYYY-MM-DD"),
+        title: dayjs(newList[0].createdAt).format("YYYY-M-D"),
         items: [newList[0]]
       }
     ];
@@ -82,7 +86,7 @@ export default class Statistics extends Vue {
         last.items.push(current);
       } else {
         result.push({
-          title: dayjs(current.createdAt).format("YYYY-MM-DD"),
+          title: dayjs(current.createdAt).format("YYYY-M-D"),
           items: [current]
         });
       }

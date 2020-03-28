@@ -7,8 +7,8 @@
       <li
         v-for="tag in tagList"
         :key="tag.id"
-        :class="{selected:selectedTags.indexOf(tag)>=0}"
-        @click="toggle(tag)"
+        :class="{selected:selectedTags.indexOf(tag.name)>=0}"
+        @click="toggle(tag.name)"
       >{{tag.name}}</li>
     </ul>
   </div>
