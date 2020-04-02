@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/JYI-Bookkeeping/dist/precache-manifest.97d6a132448779df2a97d703761ec1f5.js"
+  "/JYI-Bookkeeping/dist/precache-manifest.e958efaa7b43a061568859edc2c8f08f.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "record"});
