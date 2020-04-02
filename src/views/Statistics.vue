@@ -7,7 +7,7 @@
         :data-source="intervalList"
         :value.sync="interval"
       />-->
-      <ol>
+      <ol v-if="groupedList.length>0">
         <li v-for="(group, index) in groupedList" :key="index">
           <h3 class="title">
             {{ beautify(group.title) }}
@@ -22,6 +22,7 @@
           </ol>
         </li>
       </ol>
+      <div v-else class="noResult">目前没有相关记录</div>
     </Layout>
   </div>
 </template>
@@ -109,6 +110,10 @@ export default class Statistics extends Vue {
 </script>
 
 <style lang="scss" scoped>
+.noResult {
+  padding: 16px;
+  text-align: center;
+}
 .notes {
   margin-right: auto;
   margin-left: 16px;
